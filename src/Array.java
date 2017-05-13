@@ -13,9 +13,9 @@ public class Array {
 	}
 	
 	/**
-	 * һ���Ǹ���������ʾΪһ�����飬 ������ÿһ��Ԫ�ش�����������һ��λ��
-	 * ������±�ԽС��������λ��Խ�ߡ�
-	 * ���ڶԸ���������һ���㣬�뷵�ؽ�����顣
+	 * 一个非负整数被表示为一个数组， 数组中每一个元素代表该整数的一个位。
+	 * 数组的下标越小，代表的位数越高。
+	 * 现在对该数组做加一运算，请返回结果数组。
 	 */
 	public static int[] plusOne(int[] digits) {
         int carries = 1;
@@ -36,10 +36,10 @@ public class Array {
     }
 	
 	/**
-	 * ������Ʊ2������һ�β���γ��۹�Ʊ���������ٴι���֮ǰ�ȳ��۸ù�Ʊ���ҵ���������
-	 * prices[1,3,5,6,4],�������Ӧ�����Ҿֲ����Ž⣬�����Լ�ΪֻҪ�����Ӿ�����Ʊ
-	 * �����(3-1)+(5-3)+(6-5)=5
-	 * (5-1)+(6-5)=5,˳������,ÿ����֮��Ĳ�ĺ͵������ֵ-��Сֵ
+	 * 买卖股票2，购买一次并多次出售股票，必须在再次购买之前先出售该股票，找到最大的利润。
+	 * prices[1,3,5,6,4],这个问题应该是找局部最优解，但可以简化为只要有增加就卖股票
+	 * 结果是(3-1)+(5-3)+(6-5)=5
+	 * (5-1)+(6-5)=5,顺序数组,每个数之间的差的和等于最大值-最小值
 	 */
 	public static int maxProfit2(int[] prices){
 		int profit=0;
@@ -52,9 +52,9 @@ public class Array {
 		return profit;
 	}
 	
-	/**217 �����ظ�
-	 * �����������飬���������Ƿ�����κ��ظ��
-	 * ��������е��κ�ֵ���ٳ������Σ�����Ӧ����true�����ÿ��Ԫ�ض���ͬ���򷵻�false��
+	/**217 包含重复
+	 * 给定整数数组，查找数组是否包含任何重复项。
+	 * 如果数组中的任何值至少出现两次，则函数应返回true，如果每个元素都不同，则返回false。
 	 * @param nums
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public class Array {
 		 return false;
 	 }
 	
-	/*1������һ�������һ��Ŀ���������ҳ�������������ֵ��ӵ���Ŀ�������������ǵ��±�
+	/*1，输入一个数组和一个目标整数，找出数组中哪两个值相加等于目标整数，求他们的下标
 	 * @param numbers : An array of Integer
 	 * @param target : target = numbers[index1] + numbers[index2]
 	 * @return : [index1 + 1, index2 + 1] (index1 < index2) numbers=[2, 7, 11,
@@ -87,7 +87,7 @@ public class Array {
 		return result;
 	}
 
-	/*121 ���Ʊ��������ÿһλ����ÿһ��ļ۸���������
+	/*121 买股票，数组中每一位等于每一天的价格，求获利最大
 	 * Input: [7, 1, 5, 3, 6, 4] Output: 5 
 	 * max. difference = 6-1 = 5 (not 7-1 = 6, as selling price needs to be larger than buying price)
 	 */
