@@ -22,4 +22,31 @@ public class Sword {
 		}
 		return result;
 	}
+	
+	/**offer7,用两个栈实现一个队列
+	 * 
+	 */
+	
+	/*
+	 *剑指offer中 5，从尾到头打印链表，用栈或递归
+	 public void printListReverse(ListNode headNode){
+	 	Stack<ListNode> stack = new Stack<ListNode>();
+	 	while(headNode!=null){
+	 		stack.push(headNode);
+	 		headNode=headNode.next;
+	 	}
+	 	while(!stack.isEmpty()){	//栈非空，从头打印数据
+	 		System.out.println(stack.pop().data);
+	 	}
+	 }
+	 //递归
+	 public void printListReverse(ListNode headNode){
+	 	if(headNode!=null){
+	 		if(headNode.next!=null){
+	 			printListReverse(headNode.next);
+	 		}
+	 	}
+	 	System.out.println(headNode.data);
+	 }
+	 */
 }
