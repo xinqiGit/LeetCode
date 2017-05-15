@@ -97,6 +97,9 @@ public class Array {
     }
 	
 	/**5-
+=======
+	/**
+>>>>>>> branch 'master' of https://github.com/xinqijava/LeetCode.git
 	 * 一个非负整数被表示为一个数组， 数组中每一个元素代表该整数的一个位。
 	 * 数组的下标越小，代表的位数越高。
 	 * 现在对该数组做加一运算，请返回结果数组。
