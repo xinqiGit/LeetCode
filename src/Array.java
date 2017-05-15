@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 public class Array {
 
@@ -11,11 +13,93 @@ public class Array {
 			System.out.print(i+",");
 		}
 	}
+
+	/**offer7,ç”¨ä¸¤ä¸ªæ ˆå®ç°ä¸€ä¸ªé˜Ÿåˆ—
+	 * 
+	 */
 	
-	/**
-	 * Ò»¸ö·Ç¸ºÕûÊı±»±íÊ¾ÎªÒ»¸öÊı×é£¬ Êı×éÖĞÃ¿Ò»¸öÔªËØ´ú±í¸ÃÕûÊıµÄÒ»¸öÎ»¡£
-	 * Êı×éµÄÏÂ±êÔ½Ğ¡£¬´ú±íµÄÎ»ÊıÔ½¸ß¡£
-	 * ÏÖÔÚ¶Ô¸ÃÊı×é×ö¼ÓÒ»ÔËËã£¬Çë·µ»Ø½á¹ûÊı×é¡£
+	/*
+	 *å‰‘æŒ‡offerä¸­ 5ï¼Œä»å°¾åˆ°å¤´æ‰“å°é“¾è¡¨ï¼Œç”¨æ ˆæˆ–é€’å½’
+	 public void printListReverse(ListNode headNode){
+	 	Stack<ListNode> stack = new Stack<ListNode>();
+	 	while(headNode!=null){
+	 		stack.push(headNode);
+	 		headNode=headNode.next;
+	 	}
+	 	while(!stack.isEmpty()){	//æ ˆéç©ºï¼Œä»å¤´æ‰“å°æ•°æ®
+	 		System.out.println(stack.pop().data);
+	 	}
+	 }
+	 //é€’å½’
+	 public void printListReverse(ListNode headNode){
+	 	if(headNode!=null){
+	 		if(headNode.next!=null){
+	 			printListReverse(headNode.next);
+	 		}
+	 	}
+	 	System.out.println(headNode.data);
+	 }
+	 */
+	
+	/** 7-26 ç§»é™¤æœ‰åºæ•°ç»„ä¸­çš„é‡å¤å…ƒç´ ï¼Œä¸æ–°å»ºæ•°ç»„ï¼Œåœ¨åŸæœ‰æ•°ç»„ä¸Šæ“ä½œ
+	 * æœ‰åºæ•°ç»„å»é‡ï¼Œä»å¤´åˆ°å°¾ï¼Œç›¸é‚»ä¸¤ä¸¤æ¯”è¾ƒã€‚
+	 * @param nums	[1,1,2]
+	 * @return	è¿”å›å»é‡åçš„æ•°ç»„é•¿åº¦2ï¼Œ[1,2]
+	 */
+	public int removeDuplicates(int[] nums) {
+		if(nums.length==0||nums==null){
+			return 0;
+		}
+        int size = 0;
+        for (int i = 0; i < nums.length; i++) {
+			if(nums[size]!=nums[i]){
+				nums[++size]=nums[i];
+			}
+		}
+        return size+1;
+    }
+	
+	/*6-219è§£æ³•2	æ•°ç»„ä¸­é‡å¤çš„æ•°ï¼Œç”¨setå¾ˆ6
+	public boolean containsNearbyDuplicate(int[] nums, int k) {
+			for (int i = 0; i < nums.length; i++) {
+			if(i>k) s.remove(nums[i-k-1]);	//ä¿è¯setä¸­åªæœ‰kä¸ªæ•°,è¿™æ ·ä¸€æœ‰é‡å¤çš„æ•°ä¸‹æ ‡è‚¯å®šå°äºç­‰äºk
+			if(!s.add(nums[i])) return true;
+		}
+		return false;
+	}
+	*/
+	
+	/**6-219
+	 * å€ŸåŠ©hashMapåˆ¤æ–­ä¸‹æ ‡ï¼Œä¸ç¬¬2é¢˜ç±»ä¼¼ï¼Œéƒ½æ˜¯æ•°ç»„ä¸­ä¸‹æ ‡çš„é—®é¢˜
+	 * @param nums	è¾“å…¥ä¸€ä¸ªæ•°ç»„å’Œä¸€ä¸ªæ•´æ•°k
+	 * @param k
+	 * @return	å¦‚æœæ•°ç»„ä¸­å­˜åœ¨ä¸¤ä¸ªç›¸åŒçš„æ•°ä¸”ä¸‹æ ‡è·ç¦»å°äºkï¼Œè¿”å›true
+	 */
+	public boolean containsNearbyDuplicate(int[] nums, int k) {
+		Set<Integer> s = new HashSet<>();
+        if(nums.length<2||k<1)
+        	return false;
+        Map<Integer,Integer> m = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+        	//å¦‚æœmapä¸­æ²¡æœ‰è¿™ä¸ªå€¼ï¼Œæ·»åŠ åˆ°mapä¸­
+        	if(!m.containsKey(nums[i])){
+        		m.put(nums[i], i);
+        	}
+        	//å¦‚æœmapä¸­æœ‰è¿™ä¸ªå€¼å–å‡ºå®ƒçš„ä¸‹æ ‡ï¼Œåˆ¤æ–­i-value<k
+        	else{
+        		int value = m.get(nums[i]);
+        		if((i-value)<=k)
+        			return true;
+        		m.put(nums[i], i);	//è¿™ä¸€æ­¥å¯èƒ½çš„æƒ…å†µæ˜¯ï¼Œå‰ä¸¤ä¸ªç›¸åŒçš„æ•°ä¸‹æ ‡å¤§äºkï¼Œå­˜åœ¨ç¬¬3ä¸ªç›¸åŒçš„æ•°ï¼Œ2,3çš„ä¸‹æ ‡<k
+        	}
+        }
+        return false;
+    }
+	
+	/**5-
+	 * ä¸€ä¸ªéè´Ÿæ•´æ•°è¢«è¡¨ç¤ºä¸ºä¸€ä¸ªæ•°ç»„ï¼Œ æ•°ç»„ä¸­æ¯ä¸€ä¸ªå…ƒç´ ä»£è¡¨è¯¥æ•´æ•°çš„ä¸€ä¸ªä½ã€‚
+	 * æ•°ç»„çš„ä¸‹æ ‡è¶Šå°ï¼Œä»£è¡¨çš„ä½æ•°è¶Šé«˜ã€‚
+	 * ç°åœ¨å¯¹è¯¥æ•°ç»„åšåŠ ä¸€è¿ç®—ï¼Œè¯·è¿”å›ç»“æœæ•°ç»„ã€‚
 	 */
 	public static int[] plusOne(int[] digits) {
         int carries = 1;
@@ -35,11 +119,11 @@ public class Array {
         return rst;
     }
 	
-	/**
-	 * ÂòÂô¹ÉÆ±2£¬¹ºÂòÒ»´Î²¢¶à´Î³öÊÛ¹ÉÆ±£¬±ØĞëÔÚÔÙ´Î¹ºÂòÖ®Ç°ÏÈ³öÊÛ¸Ã¹ÉÆ±£¬ÕÒµ½×î´óµÄÀûÈó¡£
-	 * prices[1,3,5,6,4],Õâ¸öÎÊÌâÓ¦¸ÃÊÇÕÒ¾Ö²¿×îÓÅ½â£¬µ«¿ÉÒÔ¼ò»¯ÎªÖ»ÒªÓĞÔö¼Ó¾ÍÂô¹ÉÆ±
-	 * ½á¹ûÊÇ(3-1)+(5-3)+(6-5)=5
-	 * (5-1)+(6-5)=5,Ë³ĞòÊı×é,Ã¿¸öÊıÖ®¼äµÄ²îµÄºÍµÈÓÚ×î´óÖµ-×îĞ¡Öµ
+	/**4-
+	 * ä¹°å–è‚¡ç¥¨2ï¼Œè´­ä¹°ä¸€æ¬¡å¹¶å¤šæ¬¡å‡ºå”®è‚¡ç¥¨ï¼Œå¿…é¡»åœ¨å†æ¬¡è´­ä¹°ä¹‹å‰å…ˆå‡ºå”®è¯¥è‚¡ç¥¨ï¼Œæ‰¾åˆ°æœ€å¤§çš„åˆ©æ¶¦ã€‚
+	 * prices[1,3,5,6,4],è¿™ä¸ªé—®é¢˜åº”è¯¥æ˜¯æ‰¾å±€éƒ¨æœ€ä¼˜è§£ï¼Œä½†å¯ä»¥ç®€åŒ–ä¸ºåªè¦æœ‰å¢åŠ å°±å–è‚¡ç¥¨
+	 * ç»“æœæ˜¯(3-1)+(5-3)+(6-5)=5
+	 * (5-1)+(6-5)=5,é¡ºåºæ•°ç»„,æ¯ä¸ªæ•°ä¹‹é—´çš„å·®çš„å’Œç­‰äºæœ€å¤§å€¼-æœ€å°å€¼
 	 */
 	public static int maxProfit2(int[] prices){
 		int profit=0;
@@ -52,9 +136,9 @@ public class Array {
 		return profit;
 	}
 	
-	/**217 °üº¬ÖØ¸´
-	 * ¸ø¶¨ÕûÊıÊı×é£¬²éÕÒÊı×éÊÇ·ñ°üº¬ÈÎºÎÖØ¸´Ïî¡£
-	 * Èç¹ûÊı×éÖĞµÄÈÎºÎÖµÖÁÉÙ³öÏÖÁ½´Î£¬Ôòº¯ÊıÓ¦·µ»Øtrue£¬Èç¹ûÃ¿¸öÔªËØ¶¼²»Í¬£¬Ôò·µ»Øfalse¡£
+	/**3-217 åŒ…å«é‡å¤
+	 * ç»™å®šæ•´æ•°æ•°ç»„ï¼ŒæŸ¥æ‰¾æ•°ç»„æ˜¯å¦åŒ…å«ä»»ä½•é‡å¤é¡¹ã€‚
+	 * å¦‚æœæ•°ç»„ä¸­çš„ä»»ä½•å€¼è‡³å°‘å‡ºç°ä¸¤æ¬¡ï¼Œåˆ™å‡½æ•°åº”è¿”å›trueï¼Œå¦‚æœæ¯ä¸ªå…ƒç´ éƒ½ä¸åŒï¼Œåˆ™è¿”å›falseã€‚
 	 * @param nums
 	 * @return
 	 */
@@ -66,7 +150,7 @@ public class Array {
 		 return false;
 	 }
 	
-	/*1£¬ÊäÈëÒ»¸öÊı×éºÍÒ»¸öÄ¿±êÕûÊı£¬ÕÒ³öÊı×éÖĞÄÄÁ½¸öÖµÏà¼ÓµÈÓÚÄ¿±êÕûÊı£¬ÇóËûÃÇµÄÏÂ±ê
+	/*2-1ï¼Œè¾“å…¥ä¸€ä¸ªæ•°ç»„å’Œä¸€ä¸ªç›®æ ‡æ•´æ•°ï¼Œæ‰¾å‡ºæ•°ç»„ä¸­å“ªä¸¤ä¸ªå€¼ç›¸åŠ ç­‰äºç›®æ ‡æ•´æ•°ï¼Œæ±‚ä»–ä»¬çš„ä¸‹æ ‡
 	 * @param numbers : An array of Integer
 	 * @param target : target = numbers[index1] + numbers[index2]
 	 * @return : [index1 + 1, index2 + 1] (index1 < index2) numbers=[2, 7, 11,
@@ -87,7 +171,7 @@ public class Array {
 		return result;
 	}
 
-	/*121 Âò¹ÉÆ±£¬Êı×éÖĞÃ¿Ò»Î»µÈÓÚÃ¿Ò»ÌìµÄ¼Û¸ñ£¬Çó»ñÀû×î´ó
+	/*1-121 ä¹°è‚¡ç¥¨ï¼Œæ•°ç»„ä¸­æ¯ä¸€ä½ç­‰äºæ¯ä¸€å¤©çš„ä»·æ ¼ï¼Œæ±‚è·åˆ©æœ€å¤§
 	 * Input: [7, 1, 5, 3, 6, 4] Output: 5 
 	 * max. difference = 6-1 = 5 (not 7-1 = 6, as selling price needs to be larger than buying price)
 	 */
