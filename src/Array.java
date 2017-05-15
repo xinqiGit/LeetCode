@@ -14,32 +14,7 @@ public class Array {
 		}
 	}
 
-	/**offer7,用两个栈实现一个队列
-	 * 
-	 */
 	
-	/*
-	 *剑指offer中 5，从尾到头打印链表，用栈或递归
-	 public void printListReverse(ListNode headNode){
-	 	Stack<ListNode> stack = new Stack<ListNode>();
-	 	while(headNode!=null){
-	 		stack.push(headNode);
-	 		headNode=headNode.next;
-	 	}
-	 	while(!stack.isEmpty()){	//栈非空，从头打印数据
-	 		System.out.println(stack.pop().data);
-	 	}
-	 }
-	 //递归
-	 public void printListReverse(ListNode headNode){
-	 	if(headNode!=null){
-	 		if(headNode.next!=null){
-	 			printListReverse(headNode.next);
-	 		}
-	 	}
-	 	System.out.println(headNode.data);
-	 }
-	 */
 	
 	/** 7-26 移除有序数组中的重复元素，不新建数组，在原有数组上操作
 	 * 有序数组去重，从头到尾，相邻两两比较。
@@ -97,9 +72,6 @@ public class Array {
     }
 	
 	/**5-
-=======
-	/**
->>>>>>> branch 'master' of https://github.com/xinqijava/LeetCode.git
 	 * 一个非负整数被表示为一个数组， 数组中每一个元素代表该整数的一个位。
 	 * 数组的下标越小，代表的位数越高。
 	 * 现在对该数组做加一运算，请返回结果数组。
