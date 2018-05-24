@@ -7,7 +7,7 @@ import java.util.Stack;
 public class Array {
 
 	public static void main(String[] args) {
-		int a[]={1,3,5,6,119};
+		int a[]={1,3,5,6,118};
 		int b[]=plusOne(a);
 		for (int i : b) {
 			System.out.print(i+",");
