@@ -2,7 +2,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 public class Array {
 
@@ -18,9 +17,9 @@ public class Array {
 	 * 给定2n个整数数组，组成n对整数，like(a1,b1),....(an,bn),
 	 * 取每组(ai,bi)中的较小值，进行加和，使和尽可能的大。
 	 */
-	public int arrayPairSum(int[] nums) {
-        
-    }
+//	public int arrayPairSum(int[] nums) {
+//
+//    }
 
 	
 	/** 7-26 移除有序数组中的重复元素，不新建数组，在原有数组上操作
