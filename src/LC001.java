@@ -43,7 +43,6 @@ public class LC001 {
         Map<Integer, Integer> map = new HashMap<>(nums.length);
 
         for (int i = 0; i < nums.length; i++) {
-            //j不用从头开始，之前的i遍历时已经算过了
             if (map.containsKey(target - nums[i])) {
                 return new int[]{map.get(target - nums[i]), i};
             }
